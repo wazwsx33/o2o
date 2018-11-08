@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace用来将mapper和dao接口对应起来 -->
+<mapper namespace="com.watermelon.o2o.dao.AreaDao">
+
+    <!-- id用于将操作和dao接口中的方法对应，resultType表示返回值的类型 -->
+    <select id="queryArea" resultType="com.watermelon.o2o.entity.Area">
+        SELECT area_id, area_name, priority, create_time, last_edit_time
+        FROM tb_area
+        ORDER BY priority DESC
+    </select>
+</mapper>
