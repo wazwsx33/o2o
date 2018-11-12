@@ -5,7 +5,7 @@ import com.watermelon.o2o.entity.Area;
 import java.util.List;
 
 /**
- * @Description:
+ * @Description: 区域 服务层
  * @Author; Watermelon
  * @Date: 2018/11/7 20:34
  */
