@@ -18,7 +18,7 @@
         （1）加入对静态组员的处理：js,gif,png
         （2）允许使用"/"做整体映射
      -->
-    <mvc:resources mapping="/resources/**" location="/resources" />
+    <!--<mvc:resources mapping="/resources/**" location="/resources" />-->
     <mvc:default-servlet-handler />
 
     <!-- 3.定义视图解释器 -->
