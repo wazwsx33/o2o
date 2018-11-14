@@ -12,14 +12,14 @@
 
     <!-- 配置SpringMVC -->
     <!-- 1.开启SpringMVC注解模式 -->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
 
     <!-- 2.静态资源默认servlet配置
         （1）加入对静态组员的处理：js,gif,png
         （2）允许使用"/"做整体映射
      -->
     <!--<mvc:resources mapping="/resources/**" location="/resources" />-->
-    <mvc:default-servlet-handler />
+    <mvc:default-servlet-handler/>
 
     <!-- 3.定义视图解释器 -->
     <bean id="viewResolver"
@@ -27,8 +27,15 @@
         <property name="prefix" value="/WEB-INF/html/"></property>
         <property name="suffix" value=".html"></property>
     </bean>
+    <!-- 文件上传解析器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"></property>
+        <!-- 20M = 1024 * 1024 * 20 -->
+        <property name="maxUploadSize" value="20971520"></property>
+        <property name="maxInMemorySize" value="20971520"></property>
+    </bean>
 
     <!-- 4.扫描web相关的bean -->
-    <context:component-scan base-package="com.watermelon.o2o.controller" />
+    <context:component-scan base-package="com.watermelon.o2o.controller"/>
 
 </beans>
