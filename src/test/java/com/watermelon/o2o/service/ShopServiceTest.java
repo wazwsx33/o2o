@@ -7,6 +7,7 @@ import com.watermelon.o2o.entity.PersonInfo;
 import com.watermelon.o2o.entity.Shop;
 import com.watermelon.o2o.entity.ShopCategory;
 import com.watermelon.o2o.enums.ShopStateEnum;
+import com.watermelon.o2o.exceptions.ShopOpertationException;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -56,5 +57,27 @@ public class ShopServiceTest extends BaseTest {
         ShopExecution se = shopService.addShop(shop, inputStream, shopImg.getName());
 
         assertEquals(ShopStateEnum.CHECK.getState(), se.getState());
+    }
+
+    @Test
+    public void testModifyShop () throws ShopOpertationException, FileNotFoundException {
+        Shop shop = new Shop();
+        shop.setShopId(1L);
+        shop.setShopName("测试的新店铺");
+        File shopImg = new File("F:/2.png");
+        InputStream is = new FileInputStream(shopImg);
+        ShopExecution shopExecution = shopService.modifyShop(shop, is, "2.png");
+        System.out.println("新图片地址：" + shopExecution.getShop().getShopImg());
+    }
+
+    @Test
+    public void testGetShopList() {
+        Shop shopCondition = new Shop();
+        ShopCategory sc = new ShopCategory();
+        sc.setShopCategoryId(1L);
+        shopCondition.setShopCategory(sc);
+        ShopExecution se = shopService.getShopList(shopCondition, 2, 2);
+        System.out.println("店铺列表数为：" + se.getShopList().size());
+        System.out.println("店铺总数为：" + se.getCount());
     }
 }
