@@ -8,4 +8,19 @@
         where shop_id = #{shopId}
         ORDER BY priority DESC
     </select>
+
+    <insert id="batchInsertProductCategory" parameterType="java.util.List">
+        INSERT INTO tb_product_category(product_category_name, priority, create_time, shop_id)
+        VALUES
+        /*item为foreach中每次循环用到的对象，可随意命名*/
+        /*separator为分隔符，最终格式为(xxx),(xxx),(xxx)*/
+        <foreach collection="list" item="productCategory" index="index" separator=",">
+            (
+            #{productCategory.productCategoryName},
+            #{productCategory.priority},
+            #{productCategory.createTime},
+            ${productCategory.shopId}
+            )
+        </foreach>
+    </insert>
 </mapper>

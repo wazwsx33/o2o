@@ -1,6 +1,8 @@
 package com.watermelon.o2o.service;
 
+import com.watermelon.o2o.dto.ProductCategoryExecution;
 import com.watermelon.o2o.entity.ProductCategory;
+import com.watermelon.o2o.exceptions.ProductCategoryOperationException;
 
 import java.util.List;
 
@@ -17,4 +19,12 @@ public interface ProductCategoryService {
      * @return
      */
     List<ProductCategory> getProdructCategoryList(long shopId);
+
+    /**
+     *
+     * @param productCategoryList
+     * @return
+     * @throws ProductCategoryOperationException
+     */
+    ProductCategoryExecution batchAddProductCategoryList(List<ProductCategory> productCategoryList) throws ProductCategoryOperationException;
 }

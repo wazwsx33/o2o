@@ -12,7 +12,7 @@ public enum ProductCategoryStateEnum {
 
     private String stateInfo;
 
-    private ProductCategoryStateEnum(int state, String stateInfo) {
+    ProductCategoryStateEnum(int state, String stateInfo) {
         this.state = state;
         this.stateInfo = stateInfo;
     }
