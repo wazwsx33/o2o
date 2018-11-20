@@ -6,5 +6,6 @@
         SELECT product_category_id, product_category_name, priority, create_time, shop_id
         FROM tb_product_category
         where shop_id = #{shopId}
+        ORDER BY priority DESC
     </select>
 </mapper>

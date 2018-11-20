@@ -29,12 +29,8 @@ public class ProductCategoryManagementController {
     @GetMapping(value = "getproductcategorylist")
     @ResponseBody
     private Result<List<ProductCategory>> getProductCategoryList(HttpServletRequest request) {
-        //To be removed
-        Shop shop = new Shop();
-        shop.setShopId(1L);
-        request.getSession().setAttribute("currentShop", shop);
 
-        Shop currentShop = (Shop) request.getSession().getAttribute("shop");
+        Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
         List<ProductCategory> list = null;
 
         if (currentShop != null && currentShop.getShopId() > 0) {
