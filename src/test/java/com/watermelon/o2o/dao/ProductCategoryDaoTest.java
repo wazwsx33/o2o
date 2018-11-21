@@ -49,4 +49,16 @@ public class ProductCategoryDaoTest extends BaseTest {
         int effectedNum = productCategoryDao.batchInsertProductCategory(productCategoryList);
         assertEquals(2, effectedNum);
     }
+
+    @Test
+    public void testDeleteProductCategory() throws Exception {
+        long shopId = 1;
+        List<ProductCategory> productCategoryList =productCategoryDao.queryProdructCategoryList(shopId);
+        for (ProductCategory pc : productCategoryList) {
+            if ("类别11".equals(pc.getProductCategoryName()) || "类别12".equals(pc.getProductCategoryName())){
+                int effectedNum = productCategoryDao.deleteProductCategory(pc.getProductCategoryId(), pc.getShopId());
+                assertEquals(1, effectedNum);
+            }
+        }
+    }
 }
