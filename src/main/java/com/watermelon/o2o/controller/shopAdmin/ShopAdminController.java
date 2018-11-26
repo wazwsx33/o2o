@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * @Description: 店铺html跳转
+ * @Description: 路由html跳转
  * @Author; Watermelon
  * @Date: 2018/11/13 17:25
  */
@@ -33,5 +33,10 @@ public class ShopAdminController {
     @GetMapping(value = "productcategorymanagement")
     public String productCategoryManagement() {
         return "shop//productcategorymanage";
+    }
+
+    @GetMapping(value = "productoperation")
+    public String productManage() {
+        return "shop/productedit";
     }
 }

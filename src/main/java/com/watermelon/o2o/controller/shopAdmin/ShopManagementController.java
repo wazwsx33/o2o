@@ -1,6 +1,7 @@
 package com.watermelon.o2o.controller.shopAdmin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.watermelon.o2o.dto.ImageHolder;
 import com.watermelon.o2o.dto.ShopExecution;
 import com.watermelon.o2o.entity.Area;
 import com.watermelon.o2o.entity.PersonInfo;
@@ -157,7 +158,8 @@ public class ShopManagementController {
 
             ShopExecution se;
             try {
-                se = shopService.addShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());
+                ImageHolder imageHolder = new ImageHolder(shopImg.getOriginalFilename(), shopImg.getInputStream());
+                se = shopService.addShop(shop, imageHolder);
                 if (se.getState() == ShopStateEnum.CHECK.getState()) {
                     modelMap.put("success", true);
                     //该用户可以操作的店铺列表
@@ -282,10 +284,12 @@ public class ShopManagementController {
         if (shop != null && shop.getShopId() != null) {
             ShopExecution se;
             try {
-                if (shopImg == null)
-                    se = shopService.modifyShop(shop, null, null);
-                else
-                    se = shopService.modifyShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());
+                if (shopImg == null) {
+                    se = shopService.modifyShop(shop, null);
+                } else {
+                    ImageHolder imageHolder = new ImageHolder(shopImg.getOriginalFilename(), shopImg.getInputStream());
+                    se = shopService.modifyShop(shop, imageHolder);
+                }
 
                 if (se.getState() == ShopStateEnum.SUCCESS.getState()) {
                     modelMap.put("success", true);

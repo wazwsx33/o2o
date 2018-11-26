@@ -1,6 +1,7 @@
 package com.watermelon.o2o.service;
 
 import com.watermelon.o2o.BaseTest;
+import com.watermelon.o2o.dto.ImageHolder;
 import com.watermelon.o2o.dto.ShopExecution;
 import com.watermelon.o2o.entity.Area;
 import com.watermelon.o2o.entity.PersonInfo;
@@ -54,7 +55,8 @@ public class ShopServiceTest extends BaseTest {
 
         File shopImg = new File("F:/timg.jpg");
         InputStream inputStream = new FileInputStream(shopImg);
-        ShopExecution se = shopService.addShop(shop, inputStream, shopImg.getName());
+        ImageHolder imageHolder = new ImageHolder(shopImg.getName(), inputStream);
+        ShopExecution se = shopService.addShop(shop, imageHolder);
 
         assertEquals(ShopStateEnum.CHECK.getState(), se.getState());
     }
@@ -66,7 +68,8 @@ public class ShopServiceTest extends BaseTest {
         shop.setShopName("测试的新店铺");
         File shopImg = new File("F:/2.png");
         InputStream is = new FileInputStream(shopImg);
-        ShopExecution shopExecution = shopService.modifyShop(shop, is, "2.png");
+        ImageHolder imageHolder = new ImageHolder(shopImg.getName(), is);
+        ShopExecution shopExecution = shopService.modifyShop(shop, imageHolder);
         System.out.println("新图片地址：" + shopExecution.getShop().getShopImg());
     }
 
