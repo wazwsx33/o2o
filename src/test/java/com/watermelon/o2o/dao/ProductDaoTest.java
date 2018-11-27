@@ -20,6 +20,8 @@ public class ProductDaoTest extends BaseTest {
 
     @Autowired
     private ProductDao productDao;
+    @Autowired
+    private ProductImgDao productImgDao;
 
     @Test
     public void testInsertProduct() throws Exception {
@@ -68,6 +70,35 @@ public class ProductDaoTest extends BaseTest {
         effectedNum = productDao.insertProduct(product2);
         assertEquals(1, effectedNum);
         effectedNum = productDao.insertProduct(product3);
+        assertEquals(1, effectedNum);
+    }
+
+    @Test
+    public void testDeleteProductByProductId() throws Exception {
+        long productId = 1;
+        int effectedNum = productImgDao.deleteProductImgByProductId(productId);
+        assertEquals(2, effectedNum);
+    }
+
+    @Test
+    public void testQueryProductById() throws Exception {
+        Product product = productDao.queryProductById(6L);
+        assertEquals(2, product.getProductImgList().size());
+    }
+
+    @Test
+    public void testUpdateProduct() throws Exception {
+        Product product = new Product();
+        ProductCategory pc = new ProductCategory();
+        Shop shop = new Shop();
+        shop.setShopId(1L);
+        pc.setProductCategoryId(2L);
+        product.setProductId(1L);
+        product.setShop(shop);
+        product.setProductName("第二个产品");
+        product.setProductCategory(pc);
+
+        int effectedNum = productDao.updateProduct(product);
         assertEquals(1, effectedNum);
     }
 }

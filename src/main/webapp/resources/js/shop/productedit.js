@@ -29,7 +29,7 @@ $(function() {
 										product.promotionPrice);
 
 								var optionHtml = '';
-								var optionArr = data.data;
+								var optionArr = data.productCategoryList;
 								var optionSelected = product.productCategory.productCategoryId;
 								optionArr
 										.map(function(item, index) {

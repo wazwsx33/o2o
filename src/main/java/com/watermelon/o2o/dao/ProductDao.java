@@ -1,6 +1,7 @@
 package com.watermelon.o2o.dao;
 
 import com.watermelon.o2o.entity.Product;
+import com.watermelon.o2o.entity.ProductImg;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public interface ProductDao {
 
     /**
      * 查询商品累表并分页，课输入的条件有：商品名（模糊），商品状态，店铺ID，商品类别
+     *
      * @param productCondition
      * @param pageSize
      * @return
@@ -22,8 +24,25 @@ public interface ProductDao {
 
     /**
      * 插入商品
+     *
      * @param product
      * @return
      */
     int insertProduct(Product product);
+
+    /**
+     * 通过ProductId查询卫衣的商品信息
+     *
+     * @param productId
+     * @return
+     */
+    Product queryProductById(long productId);
+
+    /**
+     * 修改商品信息
+     *
+     * @param product
+     * @return
+     */
+    int updateProduct(Product product);
 }
