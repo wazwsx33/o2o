@@ -1,18 +1,21 @@
 $(function() {
 	var shopId = 1;
-	var listUrl = '/shop/listproductsbyshop?pageIndex=1&pageSize=9999&shopId='
-			+ shopId;
-	var deleteUrl = '/shop/modifyproduct';
+	var listUrl = '/shopadmin/getproductlistbyshop?pageIndex=1&pageSize=999';
+	var deleteUrl = '/shopadmin/modifyproduct';
+
+    getList();
 
 	function getList() {
 		$.getJSON(listUrl, function(data) {
 			if (data.success) {
 				var productList = data.productList;
 				var tempHtml = '';
+				//遍历每条商品信息，拼接完成一行显示，列信息包括：商品名称，优先级，上下架（包含productId），编辑按钮（包含productId），预览（包含productId）
 				productList.map(function(item, index) {
 					var textOp = "下架";
 					var contraryStatus = 0;
 					if (item.enableStatus == 0) {
+						//若状态值为0，表明是已下架的商品，操作变为上架（即点击上架按钮上架相关商品）
 						textOp = "上架";
 						contraryStatus = 1;
 					} else {
@@ -51,9 +54,7 @@ $(function() {
 		});
 	}
 
-	getList();
-
-	function deleteItem(id, enableStatus) {
+	function changeItemStatus(id, enableStatus) {
 		var product = {};
 		product.productId = id;
 		product.enableStatus = enableStatus;
@@ -85,12 +86,15 @@ $(function() {
 					function(e) {
 						var target = $(e.currentTarget);
 						if (target.hasClass('edit')) {
-							window.location.href = '/myo2o/shop/productedit?productId='
+							//如果有class edit则点击就进入店铺信息编辑页面，并带有productId参数
+							window.location.href = '/shopadmin/productoperation?productId='
 									+ e.currentTarget.dataset.id;
 						} else if (target.hasClass('delete')) {
-							deleteItem(e.currentTarget.dataset.id,
+							//如果有class status则调用后台功能上下架相关商品，并带有productId参数
+							changeItemStatus(e.currentTarget.dataset.id,
 									e.currentTarget.dataset.status);
 						} else if (target.hasClass('preview')) {
+							//如果有class preview则去前台展示系统该商品详情页预览商品情况
 							window.location.href = '/myo2o/frontend/productdetail?productId='
 									+ e.currentTarget.dataset.id;
 						}

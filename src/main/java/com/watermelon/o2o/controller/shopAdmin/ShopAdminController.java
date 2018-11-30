@@ -36,7 +36,12 @@ public class ShopAdminController {
     }
 
     @GetMapping(value = "productoperation")
-    public String productManage() {
+    public String productOperation() {
         return "shop/productedit";
+    }
+
+    @GetMapping(value = "productmanagement")
+    public String productManagement() {
+        return "shop/productmanage";
     }
 }
