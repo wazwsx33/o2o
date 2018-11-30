@@ -1,6 +1,7 @@
 package com.watermelon.o2o.service.impl;
 
 import com.watermelon.o2o.dao.ProductCategoryDao;
+import com.watermelon.o2o.dao.ProductDao;
 import com.watermelon.o2o.dto.ProductCategoryExecution;
 import com.watermelon.o2o.entity.ProductCategory;
 import com.watermelon.o2o.enums.ProductCategoryStateEnum;
@@ -23,6 +24,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Autowired
     private ProductCategoryDao productCategoryDao;
+    @Autowired
+    private ProductDao productDao;
 
     @Override
     public List<ProductCategory> getProdructCategoryList(long shopId) {
@@ -52,7 +55,15 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Transactional
     /*置空和删除是两步，所以用事务控制*/
     public ProductCategoryExecution deleteProductCategory(long productCategoryId, long shopId) throws ProductCategoryOperationException {
-        //TODO 将此商品类别下的商品的类别ID置为空
+
+        try {
+            int effectedNum = productDao.updateProductCategoryToNull(productCategoryId);
+            if (effectedNum < 0)
+                throw new RuntimeException("商品类别更新失败");
+        } catch (Exception e) {
+            throw new RuntimeException("deleteProductCategory error:" + e.getMessage());
+        }
+
         try {
             int effectedNum = productCategoryDao.deleteProductCategory(productCategoryId, shopId);
             if (effectedNum <= 0){
