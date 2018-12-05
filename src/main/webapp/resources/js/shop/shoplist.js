@@ -50,14 +50,14 @@ $(function () {
 
     $('#log-out').click(function () {
         $.ajax({
-            url: "/myo2o/shop/logout",
+            url: "/shopadmin/logout",
             type: "post",
             contentType: false,
             processData: false,
             cache: false,
             success: function (data) {
                 if (data.success) {
-                    window.location.href = '/myo2o/shop/ownerlogin';
+                    window.location.href = '/shopadmin/ownerlogin';
                 }
             },
             error: function (data, error) {

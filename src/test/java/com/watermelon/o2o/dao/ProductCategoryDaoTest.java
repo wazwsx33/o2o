@@ -24,7 +24,7 @@ public class ProductCategoryDaoTest extends BaseTest {
     @Test
     public void testQueryByShopId() throws Exception {
         long shopId = 1;
-        List<ProductCategory> shopCategoryList = productCategoryDao.queryProdructCategoryList(shopId);
+        List<ProductCategory> shopCategoryList = productCategoryDao.queryProductCategoryList(shopId);
         System.out.println("类别数：" + shopCategoryList.size());
     }
 
@@ -53,7 +53,7 @@ public class ProductCategoryDaoTest extends BaseTest {
     @Test
     public void testDeleteProductCategory() throws Exception {
         long shopId = 1;
-        List<ProductCategory> productCategoryList =productCategoryDao.queryProdructCategoryList(shopId);
+        List<ProductCategory> productCategoryList =productCategoryDao.queryProductCategoryList(shopId);
         for (ProductCategory pc : productCategoryList) {
             if ("类别11".equals(pc.getProductCategoryName()) || "类别12".equals(pc.getProductCategoryName())){
                 int effectedNum = productCategoryDao.deleteProductCategory(pc.getProductCategoryId(), pc.getShopId());

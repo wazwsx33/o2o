@@ -11,5 +11,5 @@ import java.util.List;
  * @Date: 2018/11/13 20:29
  */
 public interface ShopCategoryDao {
-    List<ShopCategory> quesyShopCategory(@Param("shopCategoryCondition") ShopCategory shopCategoryCondition);
+    List<ShopCategory> queryShopCategory(@Param("shopCategoryCondition") ShopCategory shopCategoryCondition);
 }
