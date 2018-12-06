@@ -18,4 +18,9 @@ public class FrontedController {
     private String index() {
         return "fronted/index";
     }
+
+    @GetMapping(value = "shoplist")
+    private String showShopList() {
+        return "fronted/shoplist";
+    }
 }
