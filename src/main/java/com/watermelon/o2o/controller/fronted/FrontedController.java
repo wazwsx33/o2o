@@ -28,4 +28,9 @@ public class FrontedController {
     private String showShopDetail() {
         return "fronted/shopdetail";
     }
+
+    @GetMapping(value = "productdetail")
+    private String showProductDetail() {
+        return "fronted/productdetail";
+    }
 }

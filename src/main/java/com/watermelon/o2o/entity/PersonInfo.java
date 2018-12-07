@@ -20,7 +20,7 @@ public class PersonInfo {
     //性别
     private String gender;
     //用户状态
-    private String enableStatus;
+    private Integer enableStatus;
     //身份标识，1、顾客，2、店家，3、管理员
     private Integer userType;
     //创建时间
@@ -68,11 +68,11 @@ public class PersonInfo {
         this.gender = gender;
     }
 
-    public String getEnableStatus() {
+    public Integer getEnableStatus() {
         return enableStatus;
     }
 
-    public void setEnableStatus(String enableStatus) {
+    public void setEnableStatus(Integer enableStatus) {
         this.enableStatus = enableStatus;
     }
 
